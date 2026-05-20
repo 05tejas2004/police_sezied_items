@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Portal - Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; }
+        .menu-card {
+            border: none;
+            border-radius: 15px;
+            transition: all 0.3s;
+            cursor: pointer;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+        .menu-icon { font-size: 50px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">👮 Police Portal</span>
+        <div>
+            <span class="text-light me-3" id="userDisplay"></span>
+            <button class="btn btn-outline-light" onclick="logout()">
+                🚪 Logout
+            </button>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="text-center mb-5">
+        <h2>Welcome to Police Seized Item Portal</h2>
+        <p class="text-muted">Select an option to continue</p>
+    </div>
+    
+    <div class="row">
+        <!-- Option 1: Register New Case -->
+        <div class="col-md-4">
+            <div class="card menu-card bg-primary text-white p-4" onclick="window.location.href='/case-register'">
+                <div class="menu-icon">📁</div>
+                <h4>Register New Case</h4>
+                <p class="mb-0">Create a new case file</p>
+            </div>
+        </div>
+        
+        <!-- Option 2: Add Seized Item -->
+        <div class="col-md-4">
+            <div class="card menu-card bg-success text-white p-4" onclick="window.location.href='/item-register'">
+                <div class="menu-icon">📦</div>
+                <h4>Add Seized Item</h4>
+                <p class="mb-0">Register seized items</p>
+            </div>
+        </div>
+        
+        <!-- Option 3: View Items -->
+        <div class="col-md-4">
+            <div class="card menu-card bg-info text-white p-4" onclick="window.location.href='/items-list'">
+                <div class="menu-icon">🔍</div>
+                <h4>View Items</h4>
+                <p class="mb-0">Browse all items</p>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row mt-4">
+        <!-- Option 4: Statistics -->
+        <div class="col-md-4">
+            <div class="card menu-card bg-warning text-white p-4" onclick="window.location.href='/stats'">
+                <div class="menu-icon">📊</div>
+                <h4>Statistics</h4>
+                <p class="mb-0">View statistics</p>
+            </div>
+        </div>
+        
+        <!-- Option 5: Blockchain -->
+        <div class="col-md-4">
+            <div class="card menu-card bg-secondary text-white p-4" onclick="window.location.href='/blockchain'">
+                <div class="menu-icon">🔗</div>
+                <h4>Blockchain</h4>
+                <p class="mb-0">View ledger</p>
+            </div>
+        </div>
+        
+        <!-- Option 6: Logout -->
+        <div class="col-md-4">
+            <div class="card menu-card bg-danger text-white p-4" onclick="logout()">
+                <div class="menu-icon">🚪</div>
+                <h4>Logout</h4>
+                <p class="mb-0">Exit portal</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Check if logged in
+if (!localStorage.getItem('token') && !localStorage.getItem('user')) {
+    window.location.href = '/login';
+}
+
+// Display user
+document.getElementById('userDisplay').textContent = '👤 ' + (localStorage.getItem('user') || 'User');
+
+function logout() {
+    localStorage.clear();
+    window.location.href = '/login';
+}
+</script>
+
+</body>
+</html>

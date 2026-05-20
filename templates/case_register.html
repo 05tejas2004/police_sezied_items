@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register New Case</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-primary">
+    <div class="container d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">📁 Register New Case</span>
+        <div>
+            <a href="/dashboard" class="btn btn-outline-light">← Dashboard</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h4 class="mb-0">📝 Case Information</h4>
+                </div>
+                <div class="card-body">
+                    <form id="caseForm">
+                        <div class="mb-3">
+                            <label class="form-label">Case Number *</label>
+                            <input type="text" class="form-control" id="caseNumber" 
+                                   placeholder="FIR-2023-001" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Location *</label>
+                            <input type="text" class="form-control" id="location" 
+                                   placeholder="Police Station Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Officer Name *</label>
+                            <input type="text" class="form-control" id="officerName" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Date</label>
+                            <input type="date" class="form-control" id="caseDate">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" id="caseDesc" rows="3" 
+                                      placeholder="Brief description of the case..."></textarea>
+                        </div>
+                        <div id="message"></div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                📥 Register Case
+                            </button>
+                            <a href="/dashboard" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Check auth
+if (!localStorage.getItem('token') && !localStorage.getItem('user')) {
+    window.location.href = '/login';
+}
+
+// Set today's date
+document.getElementById('caseDate').value = new Date().toISOString().split('T')[0];
+
+document.getElementById('caseForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const msgDiv = document.getElementById('message');
+    msgDiv.innerHTML = '<div class="text-center"><span class="spinner-border text-primary"></span> Processing...</div>';
+    
+    const res = await fetch('/api/case', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+            case_number: document.getElementById('caseNumber').value,
+            location: document.getElementById('location').value,
+            officer_name: document.getElementById('officerName').value,
+            case_date: document.getElementById('caseDate').value,
+            description: document.getElementById('caseDesc').value
+        })
+    });
+    
+    const result = await res.json();
+    
+    if (result.success) {
+        msgDiv.innerHTML = `<div class="alert alert-success">✅ ${result.message}</div>`;
+        document.getElementById('caseForm').reset();
+        document.getElementById('caseDate').value = new Date().toISOString().split('T')[0];
+    } else {
+        msgDiv.innerHTML = `<div class="alert alert-danger">❌ ${result.message}</div>`;
+    }
+};
+</script>
+
+</body>
+</html>

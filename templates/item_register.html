@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Seized Item</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body { background-color: #f4f6f9; }
+        .qr-preview {
+            border: 2px dashed #ccc;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-success">
+    <div class="container d-flex justify-content-between">
+        <span class="navbar-brand mb-0 h1">📦 Add Seized Item</span>
+        <div>
+            <a href="/dashboard" class="btn btn-outline-light">← Dashboard</a>
+        </div>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Form -->
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h4 class="mb-0">🏷️ Item Details</h4>
+                </div>
+                <div class="card-body">
+                    <form id="itemForm">
+                        <div class="mb-3">
+                            <label class="form-label">Select Case *</label>
+                            <select class="form-select" id="caseSelect" required>
+                                <option value="">-- Select Case --</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Item Name *</label>
+                            <input type="text" class="form-control" id="itemName" 
+                                   placeholder="Gold Ring, Mobile, Laptop..." required>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Quantity/Weight</label>
+                                    <input type="text" class="form-control" id="itemQuantity" 
+                                           placeholder="e.g., 50g, 2 pieces">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="mb-3">
+                                    <label class="form-label">Estimated Value (₹)</label>
+                                    <input type="number" class="form-control" id="itemValue" 
+                                           placeholder="0.00">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Description</label>
+                            <textarea class="form-control" id="itemDesc" rows="2" 
+                                    placeholder="Detailed description..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Condition</label>
+                            <select class="form-select" id="itemCondition">
+                                <option value="New">New</option>
+                                <option value="Used">Used</option>
+                                <option value="Damaged">Damaged</option>
+                            </select>
+                        </div>
+                        <div id="message"></div>
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                🏷️ Generate QR & Register
+                            </button>
+                            <a href="/dashboard" class="btn btn-outline-secondary">
+                                Cancel
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- QR Preview -->
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-white">
+                    <h4 class="mb-0">📱 QR Code & Unique Code</h4>
+                </div>
+                <div class="card-body">
+                    <div class="qr-preview" id="qrPreview">
+                        <p class="text-muted">QR code will appear here after registration</p>
+                    </div>
+                    <div class="text-center mt-3">
+                        <h5 id="codeDisplay" class="code-tag">---</h5>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card shadow mt-3">
+                <div class="card-header bg-info text-white">
+                    <h5 class="mb-0">Recent Items</h5>
+                </div>
+                <div class="card-body" id="recentItems">
+                    <p class="text-muted">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.code-tag {
+    font-family: monospace;
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+    background: #eee;
+    padding: 10px 20px;
+    border-radius: 5px;
+    display: inline-block;
+}
+</style>
+
+<script>
+// Check auth
+if (!localStorage.getItem('token') && !localStorage.getItem('user')) {
+    window.location.href = '/login';
+}
+
+// Load cases
+async function loadCases() {
+    const res = await fetch('/api/cases');
+    const cases = await res.json();
+    
+    const select = document.getElementById('caseSelect');
+    cases.forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = `${c.case_number} - ${c.location}`;
+        select.appendChild(opt);
+    });
+}
+
+// Load recent items
+async function loadRecentItems() {
+    const res = await fetch('/api/recent-items');
+    const items = await res.json();
+    
+    const container = document.getElementById('recentItems');
+    if (items.length === 0) {
+        container.innerHTML = '<p class="text-muted">No items yet</p>';
+        return;
+    }
+    
+    let html = '<ul class="list-group list-group-flush">';
+    items.forEach(item => {
+        html += `<li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>${item.item_name}</strong><br>
+                <small class="text-muted">${item.unique_code}</small>
+            </div>
+            <span class="badge bg-primary rounded-pill">${item.case_number}</span>
+        </li>`;
+    });
+    html += '</ul>';
+    container.innerHTML = html;
+}
+
+// Initialize
+loadCases();
+loadRecentItems();
+
+// Submit form
+document.getElementById('itemForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const msgDiv = document.getElementById('message');
+    msgDiv.innerHTML = '<div class="text-center"><span class="spinner-border text-success"></span> Processing...</div>';
+    
+    const res = await fetch('/api/item', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + localStorage.getItem('token')
+        },
+        body: JSON.stringify({
+            case_id: document.getElementById('caseSelect').value,
+            item_name: document.getElementById('itemName').value,
+            description: document.getElementById('itemDesc').value,
+            quantity: document.getElementById('itemQuantity').value,
+            value: document.getElementById('itemValue').value,
+            condition: document.getElementById('itemCondition').value
+        })
+    });
+    
+    const result = await res.json();
+    
+    if (result.success) {
+        msgDiv.innerHTML = `<div class="alert alert-success">✅ ${result.message}</div>`;
+        
+        // Show QR
+        document.getElementById('qrPreview').innerHTML = 
+            `<img src="data:image/png;base64,${result.qr_code}" style="width:150px;">`;
+        document.getElementById('codeDisplay').textContent = result.unique_code;
+        
+        // Refresh recent items
+        loadRecentItems();
+        
+        // Reset form except case
+        document.getElementById('itemName').value = '';
+        document.getElementById('itemDesc').value = '';
+        document.getElementById('itemQuantity').value = '';
+        document.getElementById('itemValue').value = '';
+    } else {
+        msgDiv.innerHTML = `<div class="alert alert-danger">❌ ${result.message}</div>`;
+    }
+};
+</script>
+
+</body>
+</html>

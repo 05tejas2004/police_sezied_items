@@ -1,0 +1,58 @@
+<div class="card mb-4 shadow-sm">
+    <div class="card-header bg-primary text-white">
+        <h5 class="mb-0">📁 Register New Case</h5>
+    </div>
+    <div class="card-body">
+        <form id="caseForm">
+            <div class="mb-3">
+                <label class="form-label">Case Number</label>
+                <input type="text" class="form-control" id="caseNumber" 
+                       placeholder="FIR-2023-001" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-control" id="location" 
+                       placeholder="Police Station" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Officer Name</label>
+                <input type="text" class="form-control" id="officerName" required>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+                📝 Register Case
+            </button>
+        </form>
+        <div id="caseMessage" class="mt-3"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById('caseForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const msgDiv = document.getElementById('caseMessage');
+    msgDiv.innerHTML = '<div class="text-center"><span class="spinner-border spinner-border-sm"></span> Processing...</div>';
+    
+    try {
+        const res = await fetch('/case', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                case_number: document.getElementById('caseNumber').value,
+                location: document.getElementById('location').value,
+                officer_name: document.getElementById('officerName').value
+            })
+        });
+        const result = await res.json();
+        
+        if(result.success) {
+            msgDiv.innerHTML = `<div class="alert alert-success">✅ ${result.message}</div>`;
+            document.getElementById('caseForm').reset();
+            setTimeout(() => location.reload(), 1500);
+        } else {
+            msgDiv.innerHTML = `<div class="alert alert-danger">❌ ${result.message}</div>`;
+        }
+    } catch(err) {
+        msgDiv.innerHTML = `<div class="alert alert-danger">Error: ${err}</div>`;
+    }
+};
+</script>

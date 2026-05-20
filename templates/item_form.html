@@ -1,0 +1,81 @@
+<div class="card shadow-sm">
+    <div class="card-header bg-success text-white">
+        <h5 class="mb-0">📦 Add Seized Item</h5>
+    </div>
+    <div class="card-body">
+        <form id="itemForm">
+            <div class="mb-3">
+                <label class="form-label">Select Case</label>
+                <select class="form-select" id="caseSelect" required>
+                    <option value="">-- Select Case --</option>
+                    {% for case in cases %}
+                    <option value="{{ case['id'] }}">{{ case['case_number'] }} - {{ case['location'] }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Item Name</label>
+                <input type="text" class="form-control" id="itemName" 
+                       placeholder="Gold Ring, Mobile, Laptop..." required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Description</label>
+                <textarea class="form-control" id="itemDesc" rows="2" 
+                        placeholder="Description of the item..."></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Weight/Quantity</label>
+                <input type="text" class="form-control" id="itemQuantity" 
+                       placeholder="e.g., 50g, 2 pieces...">
+            </div>
+            <button type="submit" class="btn btn-success w-100">
+                🏷️ Generate Tag & QR
+            </button>
+        </form>
+        <div id="itemMessage" class="mt-3"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById('itemForm').onsubmit = async (e) => {
+    e.preventDefault();
+    const msgDiv = document.getElementById('itemMessage');
+    msgDiv.innerHTML = '<div class="text-center"><span class="spinner-border spinner-border-sm"></span> Processing...</div>';
+    
+    try {
+        const res = await fetch('/item', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({
+                case_id: document.getElementById('caseSelect').value,
+                item_name: document.getElementById('itemName').value,
+                description: document.getElementById('itemDesc').value,
+                quantity: document.getElementById('itemQuantity').value
+            })
+        });
+        const result = await res.json();
+        
+        if(result.success) {
+            let html = `<div class="alert alert-success">✅ ${result.message}</div>`;
+            html += `<div class="text-center mt-2">`;
+            html += `<strong>Unique Code:</strong> <code>${result.unique_code}</code><br>`;
+            html += `<img src="data:image/png;base64,${result.qr_code}" class="mt-2" style="width:100px;">`;
+            html += `</div>`;
+            msgDiv.innerHTML = html;
+            
+            // Refresh items list
+            const caseId = document.getElementById('caseSelect').value;
+            loadItems(caseId);
+            
+            // Reset form except case selection
+            document.getElementById('itemName').value = '';
+            document.getElementById('itemDesc').value = '';
+            document.getElementById('itemQuantity').value = '';
+        } else {
+            msgDiv.innerHTML = `<div class="alert alert-danger">❌ ${result.message}</div>`;
+        }
+    } catch(err) {
+        msgDiv.innerHTML = `<div class="alert alert-danger">Error: ${err}</div>`;
+    }
+};
+</script>

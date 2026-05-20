@@ -1,0 +1,362 @@
+[
+    {
+        "index": 0,
+        "timestamp": "2026-05-20T15:55:04.917663",
+        "data": {
+            "type": "Genesis",
+            "info": "Police Portal Started"
+        },
+        "previous_hash": "0",
+        "hash": "a0aee47388b524695efda9eac1ba778c6c58748acf4aafdd57d9e0da3233fc77"
+    },
+    {
+        "index": 1,
+        "timestamp": "2026-05-20T15:56:34.755954",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "888",
+                "location": "5464",
+                "officer": "tej"
+            }
+        },
+        "previous_hash": "a0aee47388b524695efda9eac1ba778c6c58748acf4aafdd57d9e0da3233fc77",
+        "hash": "22ad026318fab05aea66b6a0edd7a80482d882b83104c1a8b0bd1ad87e24d8d5"
+    },
+    {
+        "index": 2,
+        "timestamp": "2026-05-20T15:57:09.023527",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "888",
+                "item_name": "laptop",
+                "unique_code": "888-8030"
+            }
+        },
+        "previous_hash": "22ad026318fab05aea66b6a0edd7a80482d882b83104c1a8b0bd1ad87e24d8d5",
+        "hash": "85c91722e3cd91bf6248dba266bfa239968f983f500e0f0eccca926b946f46b6"
+    },
+    {
+        "index": 3,
+        "timestamp": "2026-05-20T16:03:14.155834",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "5554",
+                "location": "Zs",
+                "officer": "Ze"
+            }
+        },
+        "previous_hash": "85c91722e3cd91bf6248dba266bfa239968f983f500e0f0eccca926b946f46b6",
+        "hash": "f9fd1bc6bcd4eb04499061923ed1ec2609aa91e937c01349d87fc178491c11f1"
+    },
+    {
+        "index": 4,
+        "timestamp": "2026-05-20T16:03:35.661872",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "5554",
+                "item_name": "PHONE",
+                "unique_code": "5554-4279"
+            }
+        },
+        "previous_hash": "f9fd1bc6bcd4eb04499061923ed1ec2609aa91e937c01349d87fc178491c11f1",
+        "hash": "0c6b553397926c551a90978ebf38c68ffea05de2a78d04ec5a8c97b8dc3deab9"
+    },
+    {
+        "index": 5,
+        "timestamp": "2026-05-20T16:22:32.023722",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "55555",
+                "location": "baathi",
+                "officer": "ravi"
+            }
+        },
+        "previous_hash": "0c6b553397926c551a90978ebf38c68ffea05de2a78d04ec5a8c97b8dc3deab9",
+        "hash": "e217fe88858a47f83898a5765250eecadddbb1e1e7bfe2f0fcf954a72919edb2"
+    },
+    {
+        "index": 6,
+        "timestamp": "2026-05-20T16:23:20.709140",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "55555",
+                "item_name": "laptop",
+                "unique_code": "55555-2904"
+            }
+        },
+        "previous_hash": "e217fe88858a47f83898a5765250eecadddbb1e1e7bfe2f0fcf954a72919edb2",
+        "hash": "4d4a7355a931275b23c4d9a1c610e33e1539596821e411f559efdcfdb762d778"
+    },
+    {
+        "index": 7,
+        "timestamp": "2026-05-20T16:28:43.995442",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "789456",
+                "location": "vidya nagara",
+                "officer": "appu"
+            }
+        },
+        "previous_hash": "4d4a7355a931275b23c4d9a1c610e33e1539596821e411f559efdcfdb762d778",
+        "hash": "8d7806112115170a0e8eb7361e0d27f3ee20abbee3f99b2564e0890084078de8"
+    },
+    {
+        "index": 8,
+        "timestamp": "2026-05-20T16:29:15.399661",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "789456",
+                "item_name": "gold chain",
+                "unique_code": "789456-8036"
+            }
+        },
+        "previous_hash": "8d7806112115170a0e8eb7361e0d27f3ee20abbee3f99b2564e0890084078de8",
+        "hash": "13ff139a3036a0301323a5a881855e696ca44e83f232ea2cea6ca0d8acb70729"
+    },
+    {
+        "index": 9,
+        "timestamp": "2026-05-20T16:33:37.338587",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "55555",
+                "location": "vidya nagara",
+                "officer": "appu"
+            }
+        },
+        "previous_hash": "13ff139a3036a0301323a5a881855e696ca44e83f232ea2cea6ca0d8acb70729",
+        "hash": "6365716eee7a5c42800a220e480768be123043b567fa12e5b27316345f9c34f1"
+    },
+    {
+        "index": 10,
+        "timestamp": "2026-05-20T16:34:07.641037",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "55555",
+                "item_name": "ring",
+                "unique_code": "55555-4594"
+            }
+        },
+        "previous_hash": "6365716eee7a5c42800a220e480768be123043b567fa12e5b27316345f9c34f1",
+        "hash": "e1b878bd91d9720ccb0d5e8e7dab284c2055cacd42b3f1b6d1443dbaf620e6ce"
+    },
+    {
+        "index": 11,
+        "timestamp": "2026-05-20T16:36:42.658109",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "5555",
+                "location": "vidya nagara",
+                "officer": "appu"
+            }
+        },
+        "previous_hash": "e1b878bd91d9720ccb0d5e8e7dab284c2055cacd42b3f1b6d1443dbaf620e6ce",
+        "hash": "6343bd97a81a97a07784e435dc83bb02d00c1bd0c4f830afba7817fcfa89c6c7"
+    },
+    {
+        "index": 12,
+        "timestamp": "2026-05-20T16:37:02.325774",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "5555",
+                "item_name": "gold",
+                "unique_code": "5555-7410"
+            }
+        },
+        "previous_hash": "6343bd97a81a97a07784e435dc83bb02d00c1bd0c4f830afba7817fcfa89c6c7",
+        "hash": "4ea5df802facd30118ce1de2896b9d63d13c2f53d654edc217e0a575e8674f02"
+    },
+    {
+        "index": 13,
+        "timestamp": "2026-05-20T16:38:47.463506",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "123456",
+                "location": "abc",
+                "officer": "appu"
+            }
+        },
+        "previous_hash": "4ea5df802facd30118ce1de2896b9d63d13c2f53d654edc217e0a575e8674f02",
+        "hash": "32fec13ec509db6329b81c5f882523f613566588308018017471a5d75ad2809e"
+    },
+    {
+        "index": 14,
+        "timestamp": "2026-05-20T16:39:04.704900",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "123456",
+                "item_name": "gold",
+                "unique_code": "123456-4298"
+            }
+        },
+        "previous_hash": "32fec13ec509db6329b81c5f882523f613566588308018017471a5d75ad2809e",
+        "hash": "78d31bec0868bef1d58be8632e4115a3d6dbb50e14dc93eb3063a8b8981a3491"
+    },
+    {
+        "index": 15,
+        "timestamp": "2026-05-20T16:51:25.652782",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "2026-0001",
+                "location": "vidyanagara",
+                "officer": "appu"
+            }
+        },
+        "previous_hash": "78d31bec0868bef1d58be8632e4115a3d6dbb50e14dc93eb3063a8b8981a3491",
+        "hash": "8a95d32c928919166ef8c11e5246de08acab18a452cbc3ded39d0991b947546b"
+    },
+    {
+        "index": 16,
+        "timestamp": "2026-05-20T16:51:52.250019",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "2026-0001",
+                "item_name": "gold",
+                "unique_code": "2026-0001-4166"
+            }
+        },
+        "previous_hash": "8a95d32c928919166ef8c11e5246de08acab18a452cbc3ded39d0991b947546b",
+        "hash": "e3255251d802403b53da562385d111b2f80dd34048f27415eff83af8a288537f"
+    },
+    {
+        "index": 17,
+        "timestamp": "2026-05-20T16:57:59.837081",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "2026-0001",
+                "item_name": "phone",
+                "unique_code": "2026-0001-4251"
+            }
+        },
+        "previous_hash": "e3255251d802403b53da562385d111b2f80dd34048f27415eff83af8a288537f",
+        "hash": "24532cf066a282ee4f84ca225fa11a6e94a82f7310dd798c0713ed51c67211d1"
+    },
+    {
+        "index": 18,
+        "timestamp": "2026-05-20T17:00:13.050633",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "1234",
+                "location": "sgs",
+                "officer": "appu"
+            }
+        },
+        "previous_hash": "24532cf066a282ee4f84ca225fa11a6e94a82f7310dd798c0713ed51c67211d1",
+        "hash": "a89d16fa6cb870cb529be048d0788a343a51b8639d98c0212198073d724e3370"
+    },
+    {
+        "index": 19,
+        "timestamp": "2026-05-20T17:00:27.545241",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "1234",
+                "item_name": "ghg",
+                "unique_code": "1234-8084"
+            }
+        },
+        "previous_hash": "a89d16fa6cb870cb529be048d0788a343a51b8639d98c0212198073d724e3370",
+        "hash": "c3cef6109074d18b5ed23fae1cf12ab75fcaad00a0703898878471d24f7d7c5d"
+    },
+    {
+        "index": 20,
+        "timestamp": "2026-05-20T17:01:01.412724",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "1234",
+                "item_name": "gold",
+                "unique_code": "1234-8941"
+            }
+        },
+        "previous_hash": "c3cef6109074d18b5ed23fae1cf12ab75fcaad00a0703898878471d24f7d7c5d",
+        "hash": "e9655e77a3a907dc6061b74a117c85ef0bfd81199149177d2c3a8fa4eb2597fa"
+    },
+    {
+        "index": 21,
+        "timestamp": "2026-05-20T17:04:34.142191",
+        "data": {
+            "type": "CASE_REGISTERED",
+            "details": {
+                "case_number": "4555",
+                "location": "fgf",
+                "officer": "sdv"
+            }
+        },
+        "previous_hash": "e9655e77a3a907dc6061b74a117c85ef0bfd81199149177d2c3a8fa4eb2597fa",
+        "hash": "607c3a85cfa7c4e72e99d91b9e64bcec824b5d0e8032b7c80f981a5e8afd537c"
+    },
+    {
+        "index": 22,
+        "timestamp": "2026-05-20T17:04:45.394268",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "4555",
+                "item_name": "dac",
+                "unique_code": "4555-5432"
+            }
+        },
+        "previous_hash": "607c3a85cfa7c4e72e99d91b9e64bcec824b5d0e8032b7c80f981a5e8afd537c",
+        "hash": "26c27746b5538cc2bbdf26402d4910370efaa906ea2fd69517884e2ef96f7e25"
+    },
+    {
+        "index": 23,
+        "timestamp": "2026-05-20T21:34:04.925936",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "4555",
+                "item_name": "tab",
+                "unique_code": "4555-6583"
+            }
+        },
+        "previous_hash": "26c27746b5538cc2bbdf26402d4910370efaa906ea2fd69517884e2ef96f7e25",
+        "hash": "ec8026498cc1dc9650e93ada0405dddc75cd01157e6efa68df4593d2a32d8bac"
+    },
+    {
+        "index": 24,
+        "timestamp": "2026-05-20T21:44:57.354069",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "4555",
+                "item_name": "gold",
+                "unique_code": "4555-8692"
+            }
+        },
+        "previous_hash": "ec8026498cc1dc9650e93ada0405dddc75cd01157e6efa68df4593d2a32d8bac",
+        "hash": "9c345ec110c44afc7ef6e6792afdbd9fca3919050c1827e60647a3ff50b7e906"
+    },
+    {
+        "index": 25,
+        "timestamp": "2026-05-20T21:49:01.295091",
+        "data": {
+            "type": "ITEM_SEIZED",
+            "details": {
+                "case_number": "4555",
+                "item_name": "fdjhd",
+                "unique_code": "4555-6329"
+            }
+        },
+        "previous_hash": "9c345ec110c44afc7ef6e6792afdbd9fca3919050c1827e60647a3ff50b7e906",
+        "hash": "ab40d59199be1a3d9c99bb2bee2afbd254a139b0c535afad55d085753752813c"
+    }
+]
